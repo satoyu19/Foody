@@ -1,15 +1,13 @@
-package com.example.foody
+package com.example.foody.ui.fragments.favorites
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import com.example.foody.R
 
 
-class RecipesFragment : Fragment(R.layout.fragment_recipes) {
+class FavoriteRecipesFragment : Fragment(R.layout.fragment_favorite_recipes) {
 
-    //onCreateViewの代替
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
