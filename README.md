@@ -18,3 +18,8 @@
   
   plugin:Json To Kotlin Class(Document:https://github.com/wuseal/JsonToKotlinClass)<br>
   
+#### ・Dependency Injection(Hilt, Dagger, 手動DI, 自動DI)
+  https://developer.android.com/training/dependency-injection<br>
+    https://developer.android.com/training/dependency-injection/hilt-android<br>
+  [hilt-annotations.pdf](https://github.com/satoyu19/Foody/files/9542981/hilt-annotations.pdf)<br>
+
