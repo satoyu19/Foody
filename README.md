@@ -23,3 +23,8 @@
   https://developer.android.com/training/dependency-injection/hilt-android<br>
   [hilt-annotations.pdf](https://github.com/satoyu19/Foody/files/9542981/hilt-annotations.pdf)<br>
   https://developer.android.com/training/dependency-injection/hilt-android#component-default<br>
+
+#### RecycleView DiffUtil(リスト計算)
+https://developer.android.com/develop/ui/views/layout/recyclerview<br>
+https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView<br>
+https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil<br>  https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil.DiffResult#dispatchUpdatesTo(androidx.recyclerview.widget.ListUpdateCallback)<br>
