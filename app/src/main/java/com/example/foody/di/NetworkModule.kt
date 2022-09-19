@@ -1,7 +1,7 @@
 package com.example.foody.di
 
-import com.example.foody.models.Constants.Companion.BASE_URL
-import com.example.foody.models.FoodRecipesApi
+import com.example.foody.util.Constants.Companion.BASE_URL
+import com.example.foody.data.network.FoodRecipesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,7 +43,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): FoodRecipesApi{  //retrofitはprovideRetrofitInstanceから依存性注入
+    fun provideApiService(retrofit: Retrofit): FoodRecipesApi {  //retrofitはprovideRetrofitInstanceから依存性注入
         return retrofit.create(FoodRecipesApi::class.java)
     }
 

@@ -1,9 +1,9 @@
-package com.example.foody.models
+package com.example.foody.data.network
 
+import com.example.foody.models.FoodRecipe
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.QueryMap
-import java.net.ResponseCache
 
 interface FoodRecipesApi {
 
