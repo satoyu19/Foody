@@ -1,12 +1,12 @@
-package com.example.foody
+package com.example.foody.viewmodels
 
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foody.data.Repository
 import com.example.foody.models.FoodRecipe
@@ -31,12 +31,11 @@ class MainViewModel @Inject constructor (private val repository: Repository, app
         //ネットワーク状況の確認
         if (hasInternetConnection()){
             try {
-                val response = repository.remote.getRecipes(queries)
+                val response = repository.remote.getRecipes(queries)        //todo: ここ
                 recipesResponse.value = handleFoodRecipesResponse(response)
             }catch (e: Exception){
                 recipesResponse.value = NetworkResult.Error("Recipes not found")
             }
-
         }else {
             recipesResponse.value = NetworkResult.Error ("No Internet Connection")
         }
@@ -52,6 +51,7 @@ class MainViewModel @Inject constructor (private val repository: Repository, app
                 return NetworkResult.Error("API Key Limited")
             }
             response.body()!!.results.isNullOrEmpty() -> {      //body() →　レスポンスのデシリアライズ
+                Log.e("Error", "handle")
                 return NetworkResult.Error("Recipes not found")
             }
             response.isSuccessful -> {      //code()が[200..300]の範囲にあるとき、true を返す。

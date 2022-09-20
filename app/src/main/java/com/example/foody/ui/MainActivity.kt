@@ -9,8 +9,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.foody.R
 import com.example.foody.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-//https://github.com/stevdza-san/Foody
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
