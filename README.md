@@ -31,3 +31,10 @@ https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil<br
 
 #### BindingAdapter
 https://developer.android.com/topic/libraries/data-binding/binding-adapters?hl=ja<br>
+
+#### COIL(画像読み込み)
+https://qiita.com/kaleidot725/items/b2ca56bfc5a8120efcea<br>
+https://coil-kt.github.io/coil/<br>
+
+
+Foody API Request Url : https://api.spoonacular.com/recipes/complexSearch?apiKey=eef5bf41cf2f45af8825e274fd274094&query=pasta&maxFat=25&number=2<br>
