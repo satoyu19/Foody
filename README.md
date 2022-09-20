@@ -28,3 +28,6 @@
 https://developer.android.com/develop/ui/views/layout/recyclerview<br>
 https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView<br>
 https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil<br>  https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil.DiffResult#dispatchUpdatesTo(androidx.recyclerview.widget.ListUpdateCallback)<br>
+
+#### BindingAdapter
+https://developer.android.com/topic/libraries/data-binding/binding-adapters?hl=ja<br>
