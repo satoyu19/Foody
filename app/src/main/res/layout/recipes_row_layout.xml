@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--Resultを受け取り、それをバインディングアダプターを利用して変換する-->
+    <!--Resultを受け取り、それをバインディングアダプターを利用して変換する(RecipesAdapterファイル)-->
     <data>
         <variable
             name="result"
@@ -40,6 +40,7 @@
                     android:layout_width="200dp"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
+                    loadImageFromUrl="@{result.image}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -97,6 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
+                    setNumberOfLikes="@{result.aggregateLikes}"
                     android:textColor="@color/red"
                     android:textAlignment="center"
                     app:layout_constraintStart_toStartOf="@+id/description_textView"
@@ -122,6 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:text="100"
+                    setNumberOfMinutes="@{result.readyInMinutes}"
                     android:textColor="@color/yellow"
                     android:textAlignment="center"
                     app:layout_constraintStart_toEndOf="@+id/heart_textView"
@@ -137,7 +140,9 @@
                     app:layout_constraintStart_toStartOf="@+id/leaf_textView"
                     app:layout_constraintTop_toTopOf="@+id/clock_imageView"
                     app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/ic_leaf" />
+                    app:srcCompat="@drawable/ic_leaf"
+                    applyVeganColor="@{result.vegan}"
+                    />
 
                 <TextView
                     android:id="@+id/leaf_textView"
@@ -145,6 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:text="vegan"
+                    applyVeganColor="@{result.vegan}"
                     android:textAlignment="center"
                     app:layout_constraintStart_toEndOf="@+id/clock_textView"
                     app:layout_constraintTop_toBottomOf="@+id/leaf_imageView" />
