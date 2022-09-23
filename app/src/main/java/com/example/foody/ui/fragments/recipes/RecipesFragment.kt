@@ -17,6 +17,7 @@ import com.example.foody.databinding.FragmentRecipesBinding
 import com.example.foody.util.Constants.Companion.API_KEY
 import com.example.foody.util.NetworkResult
 import com.example.foody.viewmodels.MainViewModel
+import com.example.foody.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,6 +30,7 @@ class RecipesFragment : Fragment() {
 
 //    private lateinit var mainViewModel: MainViewModel
     private val mainViewModel: MainViewModel by viewModels()
+    private val recipeViewModel by viewModels<RecipesViewModel>()
 
     private val mAdapter by lazy { RecipesAdapter() }
 
@@ -96,20 +98,6 @@ class RecipesFragment : Fragment() {
 
     //APIリクエスト
     private fun requestApiData(){
-        mainViewModel.getRecipes(applyQueries())
-
-    }
-
-    private fun applyQueries(): HashMap<String, String> {
-        val queries: HashMap<String, String> = HashMap()
-
-        queries["number"] = "50"
-        queries["apiKey"] = API_KEY
-        queries["type"] = "snack"
-        queries["diet"] = "vegan"
-        queries["addRecipeInformation"] = "true"
-        queries["fillIngredients"] = "true"
-
-        return queries
+        mainViewModel.getRecipes(recipeViewModel.applyQueries())
     }
 }
