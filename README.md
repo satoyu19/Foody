@@ -36,5 +36,10 @@ https://developer.android.com/topic/libraries/data-binding/binding-adapters?hl=j
 https://qiita.com/kaleidot725/items/b2ca56bfc5a8120efcea<br>
 https://coil-kt.github.io/coil/<br>
 
+#### Flow
+https://developer.android.com/kotlin/flow?hl=ja<br>
+https://qiita.com/tonionagauzzi/items/12aa1a4400256cece72c<br>
 
-Foody API Request Url : https://api.spoonacular.com/recipes/complexSearch?apiKey=eef5bf41cf2f45af8825e274fd274094&query=pasta&maxFat=25&number=2<br>
+#### Gson
+https://github.com/google/gson<br>
+https://qiita.com/naoi/items/6b184700b2a41fb46356<br>
