@@ -43,3 +43,7 @@ https://qiita.com/tonionagauzzi/items/12aa1a4400256cece72c<br>
 #### Gson
 https://github.com/google/gson<br>
 https://qiita.com/naoi/items/6b184700b2a41fb46356<br>
+
+#### AndroidStudio機能　Database Inspector
+https://developer.android.com/studio/inspect/database?hl=ja<br>
+
