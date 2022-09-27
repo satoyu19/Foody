@@ -47,3 +47,6 @@ https://qiita.com/naoi/items/6b184700b2a41fb46356<br>
 #### AndroidStudio機能　Database Inspector
 https://developer.android.com/studio/inspect/database?hl=ja<br>
 
+#### DataStore
+https://developer.android.com/topic/libraries/architecture/datastore?hl=ja<br>
+
