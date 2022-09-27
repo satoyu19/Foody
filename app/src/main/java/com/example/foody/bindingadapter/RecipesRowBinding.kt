@@ -44,6 +44,7 @@ class RecipesRowBinding {
         fun loadImageFromUrl(imageView: ImageView, imageUrl: String){
             imageView.load(imageUrl){           //coilのImageViewの拡張機能を利用
                 crossfade(600)
+                error(R.drawable.ic_error_placeholder)
             }
         }
     }

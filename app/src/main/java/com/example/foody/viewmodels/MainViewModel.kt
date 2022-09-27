@@ -5,10 +5,9 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.foody.data.Repository
+import com.example.foody.data.database.RecipesEntity
 import com.example.foody.models.FoodRecipe
 import com.example.foody.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,6 +19,15 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor (private val repository: Repository, application: Application): AndroidViewModel(application) {
 
+    /** ROOM DATABASE*/
+
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readDatabase().asLiveData()
+
+    private fun insertRecipes(recipesEntity: RecipesEntity) = viewModelScope.launch {
+        repository.local.insertRecipes(recipesEntity)
+    }
+
+    /** RETROFIT */
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
@@ -31,14 +39,24 @@ class MainViewModel @Inject constructor (private val repository: Repository, app
         //ネットワーク状況の確認
         if (hasInternetConnection()){
             try {
-                val response = repository.remote.getRecipes(queries)        //todo: ここ
+                val response = repository.remote.getRecipes(queries)
                 recipesResponse.value = handleFoodRecipesResponse(response)
+
+                val foodRecipe = recipesResponse.value!!.data
+                if (foodRecipe != null){    //データがある場合、オフラインキャッシュ
+                    offlineCacheRecipes(foodRecipe)
+                }
             }catch (e: Exception){
                 recipesResponse.value = NetworkResult.Error("Recipes not found")
             }
         }else {
             recipesResponse.value = NetworkResult.Error ("No Internet Connection")
         }
+    }
+
+    private fun offlineCacheRecipes(foodRecipe: FoodRecipe) {
+        val recipesEntity = RecipesEntity(foodRecipe)
+        insertRecipes(recipesEntity)    /** データベース挿入*/
     }
 
     //todo: body()の中身がどうなっているのかログで確認する
@@ -50,7 +68,7 @@ class MainViewModel @Inject constructor (private val repository: Repository, app
             response.code() == 402 -> {
                 return NetworkResult.Error("API Key Limited")
             }
-            response.body()!!.results.isNullOrEmpty() -> {      //body() →　レスポンスのデシリアライズ
+            response.body()!!.results.isNullOrEmpty() -> {      //body() →　レスポンスのデシリアライズ(バイトコードからオブジェクトに復元)
                 Log.e("Error", "handle")
                 return NetworkResult.Error("Recipes not found")
             }
