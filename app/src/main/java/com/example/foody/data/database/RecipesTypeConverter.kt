@@ -5,6 +5,7 @@ import com.example.foody.models.FoodRecipe
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+/** Roomが対応していない型を保存可能な方に変換するコンバーター*/
 class RecipesTypeConverter {
 
     var gson = Gson()
