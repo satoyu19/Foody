@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.43020833333333336" />
+        <entry key="app/src/main/res/drawable/ic_error_placeholder.xml" value="0.2435" />
         <entry key="app/src/main/res/drawable/ic_foodjoke.xml" value="0.2815" />
         <entry key="app/src/main/res/drawable/ic_menu_book.xml" value="0.2815" />
         <entry key="app/src/main/res/drawable/ic_restaurant.xml" value="0.2815" />
