@@ -41,6 +41,9 @@ https://speakerdeck.com/sys1yagi/5fen-tewakarukotlin-coroutines-flow?slide=22<br
 https://developer.android.com/kotlin/flow?hl=ja<br>
 https://qiita.com/tonionagauzzi/items/12aa1a4400256cece72c<br>
 
+#### kotlinCoroutines
+https://qiita.com/offwhite/items/94540e7cc3b330507c9c
+
 #### Gson
 https://github.com/google/gson<br>
 https://qiita.com/naoi/items/6b184700b2a41fb46356<br>
