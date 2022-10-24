@@ -37,6 +37,7 @@ https://qiita.com/kaleidot725/items/b2ca56bfc5a8120efcea<br>
 https://coil-kt.github.io/coil/<br>
 
 #### Flow
+https://speakerdeck.com/sys1yagi/5fen-tewakarukotlin-coroutines-flow?slide=22<br>
 https://developer.android.com/kotlin/flow?hl=ja<br>
 https://qiita.com/tonionagauzzi/items/12aa1a4400256cece72c<br>
 
