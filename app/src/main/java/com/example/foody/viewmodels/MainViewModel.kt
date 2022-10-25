@@ -30,12 +30,36 @@ class MainViewModel @Inject constructor (private val repository: Repository, app
 
     /** RETROFIT */
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+    var searchRecipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
         //リモートからレシピ一覧を取得(非同期)
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queries)
     }
 
+    fun searchRecipes(searchQuery: Map<String, String>) = viewModelScope.launch {
+        searchRecipesSafeCall(searchQuery)
+    }
+
+        //検索によるAPI通信
+    private suspend fun searchRecipesSafeCall(searchQuery: Map<String, String>) {
+            if (hasInternetConnection()){
+                try {
+                    /** ①エラーが発生する可能性があるのはどこ？
+                     * Response型で包めば、HTTPのstatus Code的に失敗だとしても例外が発生しないらしいから、②ではない？
+                     * (ネットワークエラーなどの場合、例外になるっぽい)　**/
+                    val response = repository.remote.searchRecipes(searchQuery)    //②ここ？
+                    searchRecipesResponse.value = handleFoodRecipesResponse(response)
+
+                }catch (e: Exception){
+                    searchRecipesResponse.value = NetworkResult.Error("Recipes not found")
+                }
+            }else {
+                searchRecipesResponse.value = NetworkResult.Error ("No Internet Connection")
+            }
+    }
+
+    //API通信によるレシピ取得
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
             //呼び出してすぐはロードとする
         recipesResponse.value = NetworkResult.Loading()
