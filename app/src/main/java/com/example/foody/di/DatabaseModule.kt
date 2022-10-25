@@ -15,14 +15,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    //databaseの依存注入
+    //Room.databaseBuilder →　public static <T extends RoomDatabase> RoomDatabase.Builder<T> databaseBuilder(
+    //                        @NonNull Context context, @NonNull Class<T> klass, @NonNull String name)
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(context,
         RecipesDatabase::class.java,
         DATABASE_NAME).build()
 
-    //database_daoの依存注入
+    /** provideDatabaseを利用して、依存注入を行う**/
     @Singleton
     @Provides
     fun provideDao(database: RecipesDatabase) = database.recipesDao()
