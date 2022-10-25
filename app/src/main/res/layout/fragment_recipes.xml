@@ -19,6 +19,7 @@
             android:id="@+id/shimmerFrameLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,10 +32,13 @@
                 android:orientation="vertical">
 
                 <!--プレスホルダーを4つ追加-->
-                <include layout="@layout/pleceholder_row_layout"/>
-                <include layout="@layout/pleceholder_row_layout"/>
-                <include layout="@layout/pleceholder_row_layout"/>
-                <include layout="@layout/pleceholder_row_layout"/>
+                <include layout="@layout/pleceholder_row_layout" />
+
+                <include layout="@layout/pleceholder_row_layout" />
+
+                <include layout="@layout/pleceholder_row_layout" />
+
+                <include layout="@layout/pleceholder_row_layout" />
             </LinearLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
@@ -65,12 +69,13 @@
 
         <ImageView
             android:id="@+id/error_imageView"
+            readApiResponse="@{mainViewModel.recipesResponse}"
+            readDatabase="@{mainViewModel.readRecipes}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="0.5"
             android:src="@drawable/ic_sad"
-            readApiResponse="@{mainViewModel.recipesResponse}"
-            readDatabase="@{mainViewModel.readRecipes}"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,14 +86,15 @@
 <!--        readDatabase="@{mainViewModel.readRecipes}"-->
         <TextView
             android:id="@+id/error_textView"
+            readApiResponse2="@{mainViewModel.recipesResponse}"
+            readDatabase2="@{mainViewModel.readRecipes}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:alpha="0.5"
             android:textSize="18sp"
             android:textStyle="bold"
-            readApiResponse2="@{mainViewModel.recipesResponse}"
-            readDatabase2="@{mainViewModel.readRecipes}"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/error_imageView"
             app:layout_constraintStart_toStartOf="@+id/error_imageView"
             app:layout_constraintTop_toBottomOf="@+id/error_imageView" />

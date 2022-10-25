@@ -12,7 +12,7 @@ interface RecipesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insetRecipes(recipesEntity: RecipesEntity)
 
+    /** FlowとRoomを連携するため、戻り値をFlowとする。一連をLiveDataに変えても変わらない。**/
     @Query("SELECT * FROM recipes_table ORDER BY id ASC")
     fun readRecipes(): Flow<List<RecipesEntity>>
-
 }
