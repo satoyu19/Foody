@@ -1,7 +1,9 @@
 package com.example.foody.viewmodels
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.foody.data.DataStoreRepository
 import com.example.foody.util.Constants
@@ -28,12 +30,23 @@ class RecipesViewModel @Inject constructor(application: Application, private val
     private var mealType = DEFAULT_MEAL_TYPE
     private var dietType = DEFAULT_DIET_TYPE
 
-    val readMealAndDietType = dataStoreRepository.readMealAndDietType
+    //ネットワーク状態を保持
+    var networkStatus = false
+    var backOnline = false  //オンラインに戻ったか(true or false)
+
+    val readMealAndDietType = dataStoreRepository.readMealAndDietType       //データストアのMeal,Dietタイプ
+    val readBackOnline = dataStoreRepository.readBackOnline.asLiveData()    //データストアのオンライン状態
 
     //選択されたチップタイプをdataStoreに保存する
     fun saveMealAndDietType(mealType: String, mealTypeId: Int, dietType: String, dietTypeId: Int){
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepository.saveMealAndDietType(mealType, mealTypeId, dietType, dietTypeId)
+        }
+    }
+
+    fun saveBackOnline(backOnline: Boolean) {
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStoreRepository.saveBackOnline(backOnline)
         }
     }
      //api通信で利用するクエリのマップを返す　
@@ -55,5 +68,17 @@ class RecipesViewModel @Inject constructor(application: Application, private val
         queries[QUERY_FILL_INGREDIENTS] = "true"
 
         return queries
+    }
+
+    fun showNetworkStatus() {
+        if (!networkStatus) { //networkStatusがfalseの場合
+            Toast.makeText(getApplication(), "No Internet Connection", Toast.LENGTH_SHORT).show()
+            saveBackOnline(true)    //オンライン状態に戻ったか
+        } else if (networkStatus) {
+            if (backOnline) {
+                Toast.makeText(getApplication(), "we're back online.", Toast.LENGTH_SHORT).show()
+                saveBackOnline(false)
+            }
+        }
     }
 }

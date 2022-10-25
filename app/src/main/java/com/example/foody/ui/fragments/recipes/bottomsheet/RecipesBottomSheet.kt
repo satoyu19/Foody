@@ -26,7 +26,8 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var recipesViewModel: RecipesViewModel
 
-    private lateinit var binding: RecipesBottomSheetBinding
+    private var _binding: RecipesBottomSheetBinding? = null
+    private val binding get() = _binding!!
 
     private var mealTypeChip = DEFAULT_MEAL_TYPE
     private var mealTypeChipId = 0
@@ -44,7 +45,7 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = RecipesBottomSheetBinding.inflate(inflater, container, false)
+        _binding = RecipesBottomSheetBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -98,5 +99,10 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
                 Log.d("RecipesBottomSheet", e.message.toString())
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

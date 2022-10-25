@@ -8,6 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.foody.util.Constants
 import com.example.foody.util.Constants.Companion.DEFAULT_DIET_TYPE
 import com.example.foody.util.Constants.Companion.DEFAULT_MEAL_TYPE
+import com.example.foody.util.Constants.Companion.PREFERENCES_BACK_ONLINE
 import com.example.foody.util.Constants.Companion.PREFERENCES_DIET_TYPE
 import com.example.foody.util.Constants.Companion.PREFERENCES_DIET_TYPE_ID
 import com.example.foody.util.Constants.Companion.PREFERENCES_MEAL_TYPE
@@ -33,6 +34,7 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         val selectedMealTypeId = intPreferencesKey(PREFERENCES_MEAL_TYPE_ID)
         val selectedDietType = stringPreferencesKey(PREFERENCES_DIET_TYPE)
         val selectedDietTypeId = intPreferencesKey(PREFERENCES_DIET_TYPE_ID)
+        val backOnline = booleanPreferencesKey(PREFERENCES_BACK_ONLINE)
     }
 
     //Preferences DataStore を作成する
@@ -48,6 +50,14 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         }
     }
 
+    // TODO: ネットワーク状態を保持
+    suspend fun saveBackOnline(backOnline: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferenceKeys.backOnline] = backOnline
+        }
+    }
+
+        //dataStoreのchipデータを監視するFlow
         /** context.dataStore.dataはFlow型であるため、Flowで受け取る,coroutinesのFlowであることに注意　**/
         val readMealAndDietType: Flow<MealAndDietType> = context.dataStore.data
             .catch { exception ->
@@ -69,6 +79,20 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
                     selectedDietTypeId
                 )
             }
+
+    //dataStoreのオンライン状態を監視するFlow
+    val readBackOnline: Flow<Boolean> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preferences ->
+            val backOnline = preferences[PreferenceKeys.backOnline] ?: false
+            backOnline
+        }
 }
 
 data class MealAndDietType(
