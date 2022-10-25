@@ -41,6 +41,7 @@ class NetworkModule {
             .build()
     }
 
+    /**　上のモジュールを使用して、FoodRecipesApiを必要とするクラスに依存関係注入する**/
     @Singleton
     @Provides
     fun provideApiService(retrofit: Retrofit): FoodRecipesApi {  //retrofitはprovideRetrofitInstanceから依存性注入

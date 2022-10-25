@@ -37,8 +37,8 @@ class RecipesAdapter: RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
     }
 
     //RecyclerViewは、ViewHolderをデータに関連付けるために、このメソッドを呼び出します
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentRecipe = recipes[position]
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {    //holderはonCreateViewHolderの戻り値？
+        val currentRecipe = recipes[position]   //一つ分のレシピ情報 (models/Result)
         holder.bind(currentRecipe)
     }
 

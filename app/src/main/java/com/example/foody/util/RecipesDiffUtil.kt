@@ -3,6 +3,7 @@ package com.example.foody.util
 import androidx.recyclerview.widget.DiffUtil
 import com.example.foody.models.Result
 
+    //二つのリストを比較する
 class RecipesDiffUtil(private val oldList: List<Result>, private val newList: List<Result>): DiffUtil.Callback() {
 
     //古いリストのサイズを返します。
