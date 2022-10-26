@@ -61,3 +61,8 @@ https://m2.material.io/components/chips<br>
 #### DataStore
 https://developer.android.com/topic/libraries/architecture/datastore?hl=ja<br>
 
+#### ViewPager(フラグメント間スライド)
+https://developer.android.com/training/animation/vp2-migration?hl=ja
+
+#### jsop(jsonの HTML解析)
+https://github.com/jhy/jsoup
