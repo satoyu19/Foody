@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.foody.models.Result
 
     //二つのリストを比較する
-class RecipesDiffUtil(private val oldList: List<Result>, private val newList: List<Result>): DiffUtil.Callback() {
+class RecipesDiffUtil<T>(private val oldList: List<T>, private val newList: List<T>): DiffUtil.Callback() {
 
     //古いリストのサイズを返します。
     override fun getOldListSize(): Int  = oldList.size

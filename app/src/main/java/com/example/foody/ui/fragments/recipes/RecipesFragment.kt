@@ -125,6 +125,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {    //Search
                 if (database.isNotEmpty() && !args.backFromBottomSheet) {
                     Log.d("RecipesFragment", "readDatabase called!!")
 
+                        //
                     mAdapter.setData(database[0].foodRecipes)
                     hideShimmerEffect()
                 } else {     //ボトムシートから戻っていれば、データストアに保存された新しいクエリを利用してAPI通信を行う
@@ -183,7 +184,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {    //Search
                     hideShimmerEffect()
                     //.dataはnullの可能性あり。
                     response.data?.let {
-                        mAdapter.setData(it)
+                        mAdapter.setData(it)    //新し具取得したリストに置き換えて、RecycleViewを再描画する
                     }
                 }
                 is NetworkResult.Loading -> {   //ロード中はシーマを有効化

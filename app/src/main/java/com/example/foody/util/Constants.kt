@@ -4,7 +4,10 @@ class Constants {
     companion object {
 
         const val API_KEY = "eef5bf41cf2f45af8825e274fd274094"
+        const val BASE_IMAGE_URL = "https://spoonacular.com/cdn/ingredients_100x100/"   //成分Fragmentの画像を取得するベースURL
         const val BASE_URL = "https://api.spoonacular.com"
+
+        const val RECIPES_RESULT = "recipeBundle"
 
         //APIのqueryに使用する
         const val QUERY_SEARCH = "query"
@@ -18,6 +21,7 @@ class Constants {
         //ROOM Database
         const val DATABASE_NAME = "recipes_database"
         const val RECIPES_TABLE = "recipes_table"
+        const val FAVORITE_RECIPES_TABLE = "favorite_recipes_table"
 
         //Bottom Sheet and Preferences
         const val DEFAULT_RECIPES_NUMBER = "50"

@@ -6,7 +6,7 @@ import android.os.Parcelable
 import com.example.foody.models.ExtendedIngredient
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
+@Parcelize  //ナビゲーションで利用するため、必要なアノテーション
 data class Result(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int,

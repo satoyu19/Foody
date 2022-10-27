@@ -1,5 +1,6 @@
 package com.example.foody.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -48,6 +49,7 @@ class RecipesAdapter: RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
 
     //APIから新しいデータを取得するたびに追加する
     fun setData(newData: FoodRecipe){
+        Log.d("Test", "called")
         //古いリストと新しいリストの差分を計算する
         val recipesDiffUtil = RecipesDiffUtil(recipes, newData.results)
         val diffUtilResult = DiffUtil.calculateDiff(recipesDiffUtil)    //1 つのリストを別のリストに変換できる更新操作のリストを計算します。
