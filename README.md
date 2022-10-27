@@ -44,6 +44,8 @@ https://qiita.com/tonionagauzzi/items/12aa1a4400256cece72c<br>
 #### StateFlow
 https://developer.android.com/kotlin/flow/stateflow-and-sharedflow?hl=ja#stateflow<br>
 
+#### Room
+オブザーバブルクエリ：https://developer.android.com/training/data-storage/room/async-queries?hl=ja#observable
 
 #### kotlinCoroutines
 https://qiita.com/offwhite/items/94540e7cc3b330507c9c
