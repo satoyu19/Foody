@@ -32,6 +32,11 @@ https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil<br
 #### BindingAdapter
 https://developer.android.com/topic/libraries/data-binding/binding-adapters?hl=ja<br>
 
+#### ActionMode
+https://qiita.com/kaleidot725/items/581bbcefdc752f60747d
+
+
+
 #### COIL(画像読み込み)
 https://qiita.com/kaleidot725/items/b2ca56bfc5a8120efcea<br>
 https://coil-kt.github.io/coil/<br>
