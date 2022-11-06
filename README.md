@@ -73,3 +73,6 @@ https://developer.android.com/training/animation/vp2-migration?hl=ja
 
 #### jsop(jsonの HTML解析)
 https://github.com/jhy/jsoup
+
+#### actionMode
+https://qiita.com/kaleidot725/items/581bbcefdc752f60747d
