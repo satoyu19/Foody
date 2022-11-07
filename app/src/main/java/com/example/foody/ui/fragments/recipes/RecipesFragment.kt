@@ -50,13 +50,13 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {    //Search
 //        _binding = DataBindingUtil.inflate<FragmentRecipesBinding>(inflater, R.layout.recipes_bottom_sheet, container, false) エラーで落ちる。
         _binding = FragmentRecipesBinding.inflate(inflater, container, false)
 
-        binding.lifecycleOwner = this
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        _binding!!.lifecycleOwner = this
 
         setupRecycleView()      //recycleViewをセットアップし、APIデータが取得されるまでShimmer効果をアクティブにする
         setHasOptionsMenu(true)
@@ -119,6 +119,9 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {    //Search
     //データベースまたはリモートからレシピ情報を取得する
     private fun readDatabase() {
         lifecycleScope.launch {
+            // TODO: 確認用、削除 
+            Log.d("thread(true:Main/false:IO)", "${Thread.currentThread() == context!!.mainLooper.thread}")
+            
             /** 監視期間を限定しているLiveDateの拡張関数を利用*/
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
                 ////データベースがからではなく、ボトムシートからのバックがfalse(デフォルト値はfalse、つまりボトムシートから戻っていないことを指す)であれば、データベースから読み取る

@@ -21,7 +21,7 @@ object DatabaseModule {
     @Provides
     fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(context,
         RecipesDatabase::class.java,
-        DATABASE_NAME).build()
+        DATABASE_NAME).fallbackToDestructiveMigration().build() //データベースのスキーマーを変更したらエラーになったため、バージョンをあげて、.fallbackToDestructiveMigration()を追加した
 
     /** provideDatabaseを利用して、依存注入を行う**/
     @Singleton

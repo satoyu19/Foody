@@ -17,7 +17,9 @@ class RecipesAdapter: RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
     private var recipes = emptyList<Result>()
 
     class MyViewHolder(private val binding: RecipesRowLayoutBinding): RecyclerView.ViewHolder(binding.root) {
+            //レイアウトとバインドする
             fun bind(result: Result){
+                    //holderはクリックされるとresultをもとに詳細画面に遷移、RecipesAdapter参照
                 binding.result = result
                 binding.executePendingBindings()    //RecycleViewの時は必要？即時バインディング
             }

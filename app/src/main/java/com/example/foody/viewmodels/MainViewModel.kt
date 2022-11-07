@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.foody.data.Repository
+import com.example.foody.data.database.entities.FavoritesEntity
 import com.example.foody.data.database.entities.RecipesEntity
 import com.example.foody.models.FoodRecipe
 import com.example.foody.util.NetworkResult
@@ -20,12 +21,26 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor (private val repository: Repository, application: Application): AndroidViewModel(application) {
 
     /** ROOM DATABASE*/
-        //ローカルに保存されているレシピ一覧
-    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readDatabase().asLiveData()
+        //ローカルに保存されているレシピ一覧、お気に入りレシピ一覧
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
+    val readFavoriteRecipes: LiveData<List<FavoritesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
 
         //リモートで取得したレシピ一覧をローカルに保存
     private fun insertRecipes(recipesEntity: RecipesEntity) = viewModelScope.launch {
-        repository.local.insertRecipes(recipesEntity)
+            repository.local.insertRecipes(recipesEntity)
+    }
+
+    //お気に入りレシピの挿入
+    fun insertFavoriteRecipes(favoritesEntity: FavoritesEntity) = viewModelScope.launch {
+        repository.local.insertFavoriteRecipes(favoritesEntity)
+    }
+    //お気に入りレシピの削除
+    fun deleteFavoriteRecipes(favoritesEntity: FavoritesEntity) = viewModelScope.launch {
+        repository.local.deleteFavoriteRecipe(favoritesEntity)
+    }
+    //お気に入りレシピを全て削除
+    fun deleteAllFavoriteRecipes() = viewModelScope.launch {
+        repository.local.deleteAllFavoriteRecipes()
     }
 
     /** RETROFIT */
@@ -85,7 +100,7 @@ class MainViewModel @Inject constructor (private val repository: Repository, app
     }
 
     private fun offlineCacheRecipes(foodRecipe: FoodRecipe) {
-        val recipesEntity = RecipesEntity(foodRecipe)
+        val recipesEntity = RecipesEntity(foodRecipe)   //挿入データ
         insertRecipes(recipesEntity)    /** データベース挿入*/
     }
 
