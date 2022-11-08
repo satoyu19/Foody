@@ -62,7 +62,7 @@ class FavoriteRecipesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        mAdapter.clearContextualActionMode()    //アクションモードの破棄
+        mAdapter.clearContextualActionMode()    //値が割り当てられているアクションモードの破棄
     }
 
     private fun setupRecycleView(recycleView: RecyclerView) {

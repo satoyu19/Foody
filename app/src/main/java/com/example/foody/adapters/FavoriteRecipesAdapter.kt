@@ -1,5 +1,6 @@
 package com.example.foody.adapters
 
+import android.util.Log
 import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -179,6 +180,9 @@ class FavoriteRecipesAdapter constructor(private val requireActivity: FragmentAc
 
         //todo: コードの意味は？
     fun clearContextualActionMode() {
+            /**
+             * isInitialized →　あるクラスのlateinit変数が初期化済みかどうかを調べる(プロパティ参照の仕組み(kotlinのリフレクション？))
+             * **/
         if (this::mActionMode.isInitialized) {
             mActionMode.finish()
         }
